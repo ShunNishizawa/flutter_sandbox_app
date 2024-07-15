@@ -9,6 +9,39 @@ class GoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GoPage'),
+        backgroundColor: Colors.orange,
+        leading: Builder(builder: (context) {
+          return IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          );
+        }),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.orange,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(
@@ -21,9 +54,9 @@ class GoPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(router2());
+                Navigator.of(context).push(router3());
               },
-              child: const Text('Home2!'),
+              child: const Text('parallax'),
             ),
           ],
         ),

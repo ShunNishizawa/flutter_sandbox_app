@@ -8,11 +8,42 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(title),
+            backgroundColor: Colors.orange,
+            bottom: const TabBar(
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.book),
+                ),
+                Tab(
+                  icon: Icon(Icons.ac_unit),
+                )
+              ],
+            ),
+          ),
+          body: Column(
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    final snackbar = SnackBar(
+                      content: const Text('Welcome！！'),
+                      action: SnackBarAction(label: 'Here', onPressed: () {}),
+                      backgroundColor: Colors.pink,
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                  },
+                  child: Text('show snackbar')),
+              DraggableCard(child: FlutterLogo(size: 128))
+            ],
+          ),
+        ),
       ),
-      body: DraggableCard(child: FlutterLogo(size: 128)),
     );
   }
 }
